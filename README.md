@@ -40,3 +40,17 @@ pip install -r requirement.txt
 
 Add files in .gitignore which you dont want to commit
 like herethe environment .conda
+git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+
+git add requirement.txt
+git add .
+
+(Clear Screen through Ctrl+L)
+
+Now commit
+git commit -m "First commit"
+
+Now do git push
+git push origin main
