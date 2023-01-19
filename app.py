@@ -24,10 +24,19 @@ def predict_api():
     print(list(data.values()))
     print(np.array(list(data.values())))
     #print(np.array(list(data.values())).reshape(1,-1))
-    new_data=scaler.transform(np.array(list(data.values())).reshape(1,-1))
+    new_data=scaler.transform(np.array(list(data.values())).reshape(1,-1)) # transform single array into matrix [[1st row]]
     output=reg_model.predict(new_data)
     print(output[0])
     return jsonify(output[0])
+
+@app.route('/predict',methods=['POST'])
+def predict():
+    data=[float(x) for x in request.form.values()]
+    final_input=scaler.transform(np.array(data).reshape(1,-1))
+    print(final_input)
+    output=reg_model.predict(final_input)
+    print(output[0])
+    return render_template("home.html",prediction_text="The predicted house price is {}".format(output[0]))
 
 if __name__=="__main__":
     app.run(debug=True)
